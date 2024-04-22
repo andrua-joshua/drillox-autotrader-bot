@@ -10,7 +10,28 @@ import java.util.Set;
 public class Bot extends PriceChangeListener{
     public static double lot = 0.01;
     @Override
-    public void perform(double newPrice) throws ErrInvalidFunctionParamvalue, ErrTradeContextBusy, ErrNoConnection, ErrTradeDisabled, ErrCustomIndicatorError, ErrStringParameterExpected, ErrInvalidAccount, ErrTradeTooManyOrders, ErrLongsNotAllowed, ErrInvalidStops, ErrInvalidTradeVolume, ErrInvalidPrice, ErrPriceChanged, ErrOffQuotes, ErrTradeTimeout2, ErrTradeExpirationDenied, ErrIntegerParameterExpected, ErrShortsNotAllowed, ErrTradeTimeout3, ErrTradeTimeout4, ErrCommonError, ErrMarketClosed, ErrOrderLocked, ErrLongPositionsOnlyAllowed, ErrNotEnoughMoney, ErrAccountDisabled, ErrInvalidPriceParam, ErrInvalidTradeParameters, ErrTradeTimeout, ErrUnknownSymbol, ErrRequote, ErrServerBusy, ErrOldVersion, ErrTradeNotAllowed, ErrTradeModifyDenied, ErrTooManyRequests, ErrTooFrequentRequests {
+    public void perform(double newPrice) 
+        throws ErrInvalidFunctionParamvalue, 
+                ErrTradeContextBusy, 
+                ErrNoConnection, 
+                ErrTradeDisabled, 
+                ErrCustomIndicatorError, 
+                ErrStringParameterExpected, 
+                ErrInvalidAccount, 
+                ErrTradeTooManyOrders, 
+                ErrLongsNotAllowed, 
+                ErrInvalidStops, 
+                ErrInvalidTradeVolume, 
+                ErrInvalidPrice, ErrPriceChanged, 
+                ErrOffQuotes, ErrTradeTimeout2, 
+                ErrTradeExpirationDenied, ErrIntegerParameterExpected, 
+                ErrShortsNotAllowed, ErrTradeTimeout3, 
+                ErrTradeTimeout4, ErrCommonError, ErrMarketClosed, 
+                ErrOrderLocked, ErrLongPositionsOnlyAllowed, 
+                ErrNotEnoughMoney, ErrAccountDisabled, ErrInvalidPriceParam, 
+                ErrInvalidTradeParameters, ErrTradeTimeout, ErrUnknownSymbol, 
+                ErrRequote, ErrServerBusy, ErrOldVersion, ErrTradeNotAllowed, 
+                ErrTradeModifyDenied, ErrTooManyRequests, ErrTooFrequentRequests {
 
         @Drillox(Description = "To check orders for execution")
         Set<Integer> keys = new Order().getAllNonExecutedOrders().keySet();
@@ -61,7 +82,8 @@ public class Bot extends PriceChangeListener{
                             //creat a loss fill order
                             switch (MarketView.getTradingMode()){
                                 case BOT:
-                                    MarketViewBot.connection.createMarketBuyOrder(MarketViewBot.symbol, lot, order.getEntryPrice()-0.01, (newPrice+(order.getTP()/1.5)),
+                                    MarketViewBot.connection.createMarketBuyOrder(
+                                        MarketViewBot.symbol, lot, order.getEntryPrice()-0.01, (newPrice+(order.getTP()/1.5)),
                                             new MarketTradeOptions());
                                 case EA:
                                     MarketViewEA ea = new MarketViewEA();
